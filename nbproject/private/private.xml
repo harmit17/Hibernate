@@ -5,7 +5,9 @@
         <group>
             <file>file:/C:/Users/harmi/Documents/NetBeansProjects/HibernateDemo/src/java/org/hibernate/harmit/Main/HibernateTest.java</file>
             <file>file:/C:/Users/harmi/Documents/NetBeansProjects/HibernateDemo/src/java/hibernate.cfg.xml</file>
+            <file>file:/C:/Users/harmi/Documents/NetBeansProjects/HibernateDemo/src/java/org/hibernate/harmit/dto/Address.java</file>
             <file>file:/C:/Users/harmi/Documents/NetBeansProjects/HibernateDemo/src/java/org/hibernate/harmit/dto/UserDetails.java</file>
+            <file>file:/C:/Users/harmi/Documents/NetBeansProjects/HibernateDemo/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>

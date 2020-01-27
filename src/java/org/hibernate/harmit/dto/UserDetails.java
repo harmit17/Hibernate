@@ -5,9 +5,12 @@
  */
 package org.hibernate.harmit.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
+import org.hibernate.annotations.Target;
 
 /*
  * @author harmi
@@ -23,18 +26,32 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "USER_DETAILS")
-public class UserDetails {
+public class UserDetails{
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
     
     @Id @GeneratedValue(strategy=GenerationType.AUTO) //ask hibernate to generate the value, auto-let hibernate decide what to use, Table-hibernate will create a seperate table and use it. 
     private int userId;
     private String nameUser;
     @Temporal(TemporalType.DATE)//only save Date 
     private Date purchasDate;
-    private String Address;
     private String descripton;
-
+    @Embedded
+    private Address address;
+   
+    
     public int getUserId() {
         return userId;
+    }
+    
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public Date getPurchasDate() {
@@ -45,24 +62,12 @@ public class UserDetails {
         this.purchasDate = purchasDate;
     }
 
-    public String getAddress() {
-        return Address;
-    }
-
-    public void setAddress(String Address) {
-        this.Address = Address;
-    }
-
     public String getDescripton() {
         return descripton;
     }
 
     public void setDescripton(String descripton) {
         this.descripton = descripton;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public String getNameUser() {

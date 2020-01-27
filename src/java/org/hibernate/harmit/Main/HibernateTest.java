@@ -9,6 +9,7 @@ import java.util.Date;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.harmit.dto.Address;
 import org.hibernate.harmit.dto.UserDetails;
 
 /**
@@ -20,17 +21,30 @@ public class HibernateTest {
     public static void main(String[] args) {
         
         UserDetails user = new UserDetails();
+        Address addr = new Address();
+        
+       
         user.setNameUser("Harmit");
-        user.setAddress("7,Viharika Park society"); 
         user.setPurchasDate(new Date());
         user.setDescripton("Milk & Bread");
+        addr.setStreet("Viharika park Society");
+        addr.setCity("Baroda");
+        addr.setState("Gujarat");
+        addr.setPncode("390021");
+        user.setAddress(addr);
         
         UserDetails user2 = new UserDetails();
+        Address addr2 = new Address();
+        
         user2.setNameUser("Sanket");
-        user2.setAddress("Surat"); 
         user2.setPurchasDate(new Date());
         user2.setDescripton("Chocolate");
-        
+        addr2.setStreet("SG highway");
+        addr2.setCity("Ahmedabad");
+        addr2.setState("Gujarat");
+        addr2.setPncode("380054");
+        user2.setAddress(addr2);
+                
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();//takes hibernate.cfg.xml as configuration file & build sessionfactory object based on the configuration we provided
         Session session = sessionFactory.openSession();
         
