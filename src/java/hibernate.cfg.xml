@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost/user?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hbm2ddl.auto">create</property> <!-- It'll will create database schema which is required to save model objects, hibernate will create objects by itself,it will create new table everytime so the previous records will be deleted  -->
+    <property name="show_sql">true</property> <!-- It will show the executed query in stdout -->
+    <!--mapping list out all the model class that we have configured -->
+    <mapping class="org.hibernate.harmit.dto.UserDetails"></mapping>
+  </session-factory>
+</hibernate-configuration>
