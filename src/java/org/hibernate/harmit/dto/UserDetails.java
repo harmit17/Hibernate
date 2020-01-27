@@ -7,10 +7,13 @@ package org.hibernate.harmit.dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -34,23 +37,8 @@ public class UserDetails{
     private int userId;
     @Column(name="USER_NAME")
     private String nameUser;
-    @Column(name ="PURCHASE_DATE")
-    @Temporal(TemporalType.DATE)//only save Date 
-    private Date purchaseDate;
-    @Column(name="DESCRIPTION")
-    private String description;
-    @Embedded
-    @AttributeOverrides({
-    @AttributeOverride (name="street", column=@Column(name="HOME_STREET_NAME")),
-    @AttributeOverride (name="city", column=@Column(name="HOME_CITY_NAME")),
-    @AttributeOverride (name="state", column=@Column(name="HOME_STATE_NAME")),
-    @AttributeOverride (name="pncode", column=@Column(name="HOME_PIN_CODE"))})
-    private Address home_address;
-    @Embedded
-    private Address office_address;
-   
-    
-    
+    @ElementCollection //tell hibernate that this is collection
+    private Set<Address> listOfAddress = new HashSet();     //it will create subtable in database
     
     public int getUserId() {
         return userId;
@@ -60,36 +48,12 @@ public class UserDetails{
         this.userId = userId;
     }
 
-    public Date getPurchaseDate() {
-        return purchaseDate;
+    public Set<Address> getListOfAddress() {
+        return listOfAddress;
     }
 
-    public void setPurchaseDate(Date purchasDate) {
-        this.purchaseDate = purchasDate;
-    }
-
-    public Address getHome_address() {
-        return home_address;
-    }
-
-    public void setHome_address(Address home_address) {
-        this.home_address = home_address;
-    }
-
-    public Address getOffice_address() {
-        return office_address;
-    }
-
-    public void setOffice_address(Address office_address) {
-        this.office_address = office_address;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String descripton) {
-        this.description = descripton;
+    public void setListOfAddress(Set<Address> listOfAddress) {
+        this.listOfAddress = listOfAddress;
     }
 
     public String getNameUser() {

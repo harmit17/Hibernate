@@ -22,29 +22,31 @@ public class HibernateTest {
         
         UserDetails user = new UserDetails();
         Address addr = new Address();
-        
        
         user.setNameUser("Harmit");
-        user.setPurchaseDate(new Date());
-        user.setDescription("Milk & Bread");
         addr.setStreet("Viharika park Society");
         addr.setCity("Baroda");
         addr.setState("Gujarat");
         addr.setPncode("390021");
-        user.setHome_address(addr);      //passing object to UserDetails
-        
+
         UserDetails user2 = new UserDetails();
         Address addr2 = new Address();
         
         user2.setNameUser("Sanket");
-        user2.setPurchaseDate(new Date());
-        user2.setDescription("Chocolate");
         addr2.setStreet("SG highway");
         addr2.setCity("Ahmedabad");
         addr2.setState("Gujarat");
         addr2.setPncode("380054");
+        /*
+        user2.setPurchaseDate(new Date());
+        user2.setDescription("Chocolate");
+        
         user2.setOffice_address(addr2);
-                
+        */     
+        
+        user.getListOfAddress().add(addr);
+        user2.getListOfAddress().add(addr2);
+        
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();//takes hibernate.cfg.xml as configuration file & build sessionfactory object based on the configuration we provided
         Session session = sessionFactory.openSession();
         
