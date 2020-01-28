@@ -19,6 +19,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,6 +29,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Target;
 import org.hibernate.annotations.Type;
@@ -44,12 +46,11 @@ public class UserDetails{
     private int userId;
     @Column(name="USER_NAME")
     private String nameUser;
-    @ElementCollection //tell hibernate that this is collection
+    @ElementCollection(fetch=FetchType.EAGER) //tell hibernate that this is collection
     @JoinTable(name="USER_ADDRESS", //changes name of the table 
         joinColumns=@JoinColumn(name="USER_ID") //changes name of the column
     )
-    @GenericGenerator(name="hilo-gen", strategy="hilo")
-    @CollectionId(columns ={@Column(name="ADDRESS_ID")},generator = "hilo-gen", type = @Type(type="long"))  //this annotation is specific for hibernate,this tells that collection should have an identified
+   
     private Collection<Address> listOfAddress = new ArrayList<Address>();     //Using Collection Interface
 
     

@@ -63,6 +63,12 @@ public class HibernateTest {
         user = (UserDetails)session.get(UserDetails.class,1); //1 for primary key
         System.out.println("User Name retrived is " + user.getNameUser());
         */
+        
+        user = null;
+        session = sessionFactory.openSession();
+        user=(UserDetails) session.get(UserDetails.class,1);    //getting user object which has Collection of object
+        session.close();
+        System.out.println(user.getListOfAddress().size());
     }
     
 }
