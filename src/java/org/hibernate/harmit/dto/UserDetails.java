@@ -6,6 +6,8 @@
 package org.hibernate.harmit.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,10 +22,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Target;
+import org.hibernate.annotations.Type;
 
 /*
  * @author harmi
@@ -38,7 +45,23 @@ public class UserDetails{
     @Column(name="USER_NAME")
     private String nameUser;
     @ElementCollection //tell hibernate that this is collection
-    private Set<Address> listOfAddress = new HashSet();     //it will create subtable in database
+    @JoinTable(name="USER_ADDRESS", //changes name of the table 
+        joinColumns=@JoinColumn(name="USER_ID") //changes name of the column
+    )
+    @GenericGenerator(name="hilo-gen", strategy="hilo")
+    @CollectionId(columns ={@Column(name="ADDRESS_ID")},generator = "hilo-gen", type = @Type(type="long"))  //this annotation is specific for hibernate,this tells that collection should have an identified
+    private Collection<Address> listOfAddress = new ArrayList<Address>();     //Using Collection Interface
+
+    
+    
+    
+    public Collection<Address> getListOfAddress() {
+        return listOfAddress;
+    }
+
+    public void setListOfAddress(Collection<Address> listOfAddress) {
+        this.listOfAddress = listOfAddress;
+    }
     
     public int getUserId() {
         return userId;
@@ -46,14 +69,6 @@ public class UserDetails{
     
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public Set<Address> getListOfAddress() {
-        return listOfAddress;
-    }
-
-    public void setListOfAddress(Set<Address> listOfAddress) {
-        this.listOfAddress = listOfAddress;
     }
 
     public String getNameUser() {
