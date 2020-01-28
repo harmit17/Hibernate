@@ -25,6 +25,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -46,22 +48,15 @@ public class UserDetails{
     private int userId;
     @Column(name="USER_NAME")
     private String nameUser;
-    @ElementCollection(fetch=FetchType.EAGER) //tell hibernate that this is collection
-    @JoinTable(name="USER_ADDRESS", //changes name of the table 
-        joinColumns=@JoinColumn(name="USER_ID") //changes name of the column
-    )
-   
-    private Collection<Address> listOfAddress = new ArrayList<Address>();     //Using Collection Interface
+    @OneToMany
+    private Collection<Vehicle> vehicle = new ArrayList<Vehicle>(); 
 
-    
-    
-    
-    public Collection<Address> getListOfAddress() {
-        return listOfAddress;
+    public Collection<Vehicle> getVehicle() {
+        return vehicle;
     }
 
-    public void setListOfAddress(Collection<Address> listOfAddress) {
-        this.listOfAddress = listOfAddress;
+    public void setVehicle(Collection<Vehicle> vehicle) {
+        this.vehicle = vehicle;
     }
     
     public int getUserId() {

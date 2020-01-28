@@ -11,5 +11,6 @@
     <property name="show_sql">true</property> <!-- It will show the executed query in stdout -->
     <!--mapping list out all the model class that we have configured -->
     <mapping class="org.hibernate.harmit.dto.UserDetails"></mapping>
+    <mapping class="org.hibernate.harmit.dto.Vehicle"></mapping>
   </session-factory>
 </hibernate-configuration>

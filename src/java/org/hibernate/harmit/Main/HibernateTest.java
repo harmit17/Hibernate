@@ -11,64 +11,33 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.harmit.dto.Address;
 import org.hibernate.harmit.dto.UserDetails;
+import org.hibernate.harmit.dto.Vehicle;
 
-/**
- *
- * @author harmi
- */
 public class HibernateTest {
     
     public static void main(String[] args) {
         
         UserDetails user = new UserDetails();
-        Address addr = new Address();
-       
         user.setNameUser("Harmit");
-        addr.setStreet("Viharika park Society");
-        addr.setCity("Baroda");
-        addr.setState("Gujarat");
-        addr.setPncode("390021");
-
-        UserDetails user2 = new UserDetails();
-        Address addr2 = new Address();
         
-        user2.setNameUser("Sanket");
-        addr2.setStreet("SG highway");
-        addr2.setCity("Ahmedabad");
-        addr2.setState("Gujarat");
-        addr2.setPncode("380054");
-        /*
-        user2.setPurchaseDate(new Date());
-        user2.setDescription("Chocolate");
+        Vehicle vehicle = new Vehicle();
+        vehicle.setVehicleName("Bike");
         
-        user2.setOffice_address(addr2);
-        */     
+         Vehicle vehicle1 = new Vehicle();
+        vehicle1.setVehicleName("Car");
         
-        user.getListOfAddress().add(addr);
-        user2.getListOfAddress().add(addr2);
+        user.getVehicle().add(vehicle);
+        user.getVehicle().add(vehicle1);
         
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();//takes hibernate.cfg.xml as configuration file & build sessionfactory object based on the configuration we provided
         Session session = sessionFactory.openSession();
         
         session.beginTransaction();//define single unit of work
         session.save(user);
-        session.save(user2);
+        session.save(vehicle);
+        session.save(vehicle1);
         session.getTransaction().commit();
-        session.close();
-        
-        /*
-        user = null;
-        session = sessionFactory.openSession();
-        session.beginTransaction();
-        user = (UserDetails)session.get(UserDetails.class,1); //1 for primary key
-        System.out.println("User Name retrived is " + user.getNameUser());
-        */
-        
-        user = null;
-        session = sessionFactory.openSession();
-        user=(UserDetails) session.get(UserDetails.class,1);    //getting user object which has Collection of object
-        session.close();
-        System.out.println(user.getListOfAddress().size());
+        session.close();  
     }
     
 }
