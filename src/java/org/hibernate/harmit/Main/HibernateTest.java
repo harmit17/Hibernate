@@ -30,7 +30,8 @@ public class HibernateTest {
         fourWheeler.setVehicleName("Car");
         fourWheeler.setSteeringWheel("Car Steering Wheel");
         
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();//takes hibernate.cfg.xml as configuration file & build sessionfactory object based on the configuration we provided
+        //takes hibernate.cfg.xml as configuration file & build sessionfactory object based on the configuration we provided
+        SessionFactory sessionFactory  = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         
         session.beginTransaction();//define single unit of work

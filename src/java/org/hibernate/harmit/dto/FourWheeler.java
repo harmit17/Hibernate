@@ -13,8 +13,7 @@ import javax.persistence.Entity;
  * Hibernate by default implements strategy of single table (all data will be inserted in single table)
  * One common table for all the objects
  */
-@Entity
-//@DiscriminatorValue("Car") change DTYPE class name to Car
+@Entity//@DiscriminatorValue("Car") change DTYPE class name to Car
 public class FourWheeler extends Vehicle {
     
     private String SteeringWheel;
