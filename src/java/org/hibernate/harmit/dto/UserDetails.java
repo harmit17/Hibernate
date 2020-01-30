@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.hibernate.harmit.dto;
 
 import java.io.Serializable;
@@ -14,6 +10,7 @@ import java.util.Set;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
@@ -36,10 +33,6 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Target;
 import org.hibernate.annotations.Type;
 
-/*
- * @author harmi
-    This is a model class which is mapped with hibernate.cfg.xml
- */
 @Entity
 @Table(name = "USER_DETAILS")
 public class UserDetails{
@@ -48,17 +41,10 @@ public class UserDetails{
     private int userId;
     @Column(name="USER_NAME")
     private String nameUser;
-    @OneToMany
-    private Collection<Vehicle> vehicle = new ArrayList<Vehicle>(); 
+    @OneToMany(cascade=CascadeType.PERSIST)
+    private Collection<Vehicle> vehicle= new ArrayList<Vehicle>();
 
-    public Collection<Vehicle> getVehicle() {
-        return vehicle;
-    }
-
-    public void setVehicle(Collection<Vehicle> vehicle) {
-        this.vehicle = vehicle;
-    }
-    
+ 
     public int getUserId() {
         return userId;
     }

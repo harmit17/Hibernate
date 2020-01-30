@@ -22,20 +22,13 @@ public class HibernateTest {
         
         Vehicle vehicle = new Vehicle();
         vehicle.setVehicleName("Bike");
-        
-         Vehicle vehicle1 = new Vehicle();
-        vehicle1.setVehicleName("Car");
-        
-        user.getVehicle().add(vehicle);
-        user.getVehicle().add(vehicle1);
+     
         
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();//takes hibernate.cfg.xml as configuration file & build sessionfactory object based on the configuration we provided
         Session session = sessionFactory.openSession();
         
         session.beginTransaction();//define single unit of work
-        session.save(user);
-        session.save(vehicle);
-        session.save(vehicle1);
+        session.persist(user);
         session.getTransaction().commit();
         session.close();  
     }
