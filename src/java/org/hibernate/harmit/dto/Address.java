@@ -51,7 +51,4 @@ public class Address {
     public void setPncode(String pncode) {
         this.pncode = pncode;
     }
-    
-    
-    
 }

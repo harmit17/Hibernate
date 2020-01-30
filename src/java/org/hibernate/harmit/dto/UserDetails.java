@@ -60,5 +60,4 @@ public class UserDetails{
     public void setNameUser(String nameUser) {
         this.nameUser = nameUser;
     }
-    
 }

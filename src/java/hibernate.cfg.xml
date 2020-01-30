@@ -12,5 +12,7 @@
     <!--mapping list out all the model class that we have configured -->
     <mapping class="org.hibernate.harmit.dto.UserDetails"></mapping>
     <mapping class="org.hibernate.harmit.dto.Vehicle"></mapping>
+    <mapping class="org.hibernate.harmit.dto.TwoWheeler"></mapping>
+    <mapping class="org.hibernate.harmit.dto.FourWheeler"></mapping>
   </session-factory>
 </hibernate-configuration>
